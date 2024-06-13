@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const { sequelize } = require("./config/db");
-
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(cors());
 
 // Routes
 app.use("/api/auth", authRoutes);
-
+app.use(userRoutes);
 sequelize
   .sync()
   .then(() => console.log("Database connected"))
