@@ -3,13 +3,14 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const register = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       username,
       email,
       password: hashedPassword,
+      role,
     });
 
     res.status(201).json(user);
@@ -36,11 +37,32 @@ const login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      secure: false,
+    });
     res.json({ token });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+const logout = async (req, res) => {
+  res.clearCookie("jwt", {
+    httpOnly: true,
+    secure: false,
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+};
 
-module.exports = { register, login };
+const getProfile = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+module.exports = { register, login, logout, getProfile };

@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const { logRequests, logResponses } = require("./middleware/loggerMiddleware");
 const { sequelize } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -12,11 +13,14 @@ const app = express();
 
 // Middleware
 app.use(bodyParser.json());
+app.use(logRequests);
+app.use(logResponses);
 app.use(cors());
 
-// Routes
+//Routes
 app.use("/api/auth", authRoutes);
 app.use(userRoutes);
+
 sequelize
   .sync()
   .then(() => console.log("Database connected"))

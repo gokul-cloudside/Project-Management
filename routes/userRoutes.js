@@ -5,11 +5,32 @@ const {
   updateUser,
   deleteUser,
 } = require("../controllers/userController");
+const { authenticate, authorize } = require("../middleware/authMiddleware");
 const router = express.Router();
 
-router.get("/api/users", getAllUsers);
-router.get("/api/users/:id", getUserById);
-router.put("/api/users/:id", updateUser);
-router.delete("/api/users/:id", deleteUser);
+router.get(
+  "/api/users",
+  authenticate,
+  authorize(["Superuser", "Admin"]),
+  getAllUsers
+);
+router.get(
+  "/api/users/:id",
+  authenticate,
+  authorize(["Superuser", "Admin"]),
+  getUserById
+);
+router.put(
+  "/api/users/:id",
+  authenticate,
+  authorize(["Superuser", "Admin"]),
+  updateUser
+);
+router.delete(
+  "/api/users/:id",
+  authenticate,
+  authorize(["Superuser", "Admin"]),
+  deleteUser
+);
 
 module.exports = router;
