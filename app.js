@@ -6,6 +6,9 @@ const { logRequests, logResponses } = require("./middleware/loggerMiddleware");
 const { sequelize } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+const documentRoutes = require("./routes/documentRoutes");
 
 dotenv.config();
 
@@ -20,6 +23,10 @@ app.use(cors());
 //Routes
 app.use("/api/auth", authRoutes);
 app.use(userRoutes);
+app.use(projectRoutes);
+app.use(taskRoutes);
+app.use(documentRoutes);
+
 
 sequelize
   .sync()
