@@ -9,6 +9,8 @@ const userRoutes = require("./routes/userRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const documentRoutes = require("./routes/documentRoutes");
+const deploymentRoutes = require("./routes/deploymentRoutes");
+
 
 dotenv.config();
 
@@ -26,6 +28,7 @@ app.use(userRoutes);
 app.use(projectRoutes);
 app.use(taskRoutes);
 app.use(documentRoutes);
+app.use(deploymentRoutes);
 
 
 sequelize
