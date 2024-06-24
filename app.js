@@ -10,7 +10,7 @@ const projectRoutes = require("./routes/projectRoutes");
 const taskRoutes = require("./routes/taskRoutes");
 const documentRoutes = require("./routes/documentRoutes");
 const deploymentRoutes = require("./routes/deploymentRoutes");
-
+const customerRoutes = require("./routes/customerRoutes");
 
 dotenv.config();
 
@@ -29,7 +29,7 @@ app.use(projectRoutes);
 app.use(taskRoutes);
 app.use(documentRoutes);
 app.use(deploymentRoutes);
-
+app.use(customerRoutes);
 
 sequelize
   .sync()

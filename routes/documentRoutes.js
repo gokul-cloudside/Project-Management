@@ -6,11 +6,13 @@ const {
   getDocumentById,
   deleteDocument,
 } = require("../controllers/documentController");
-
+const documentDto = require("../dto/documentDto");
+const { validate } = require("../middleware/validateDtoMiddleware");
 const router = express.Router();
 
 router.post(
   "/api/documents",
+  validate(documentDto),
   authenticate,
   authorize(["Superuser", "Admin"]),
   uploadDocument

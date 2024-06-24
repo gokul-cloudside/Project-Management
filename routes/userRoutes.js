@@ -7,6 +7,8 @@ const {
 } = require("../controllers/userController");
 const { authenticate, authorize } = require("../middleware/authMiddleware");
 const router = express.Router();
+const { validate } = require("../middleware/validateDtoMiddleware");
+const {registerDto} = require("../dto/userDto");
 
 router.get(
   "/api/users",
@@ -22,6 +24,7 @@ router.get(
 );
 router.put(
   "/api/users/:id",
+  validate(registerDto),
   authenticate,
   authorize(["Superuser", "Admin"]),
   updateUser

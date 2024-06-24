@@ -7,11 +7,13 @@ const {
   deleteTask,
 } = require("../controllers/taskController");
 const { authenticate, authorize } = require("../middleware/authMiddleware");
+const { taskDto } = require("../dto/taskDto");
+const { validate } = require("../middleware/validateDtoMiddleware");
 
 const router = express.Router();
-
 router.post(
   "/api/tasks",
+  validate(taskDto),
   authenticate,
   authorize(["Superuser", "Admin"]),
   createTask
@@ -30,6 +32,7 @@ router.get(
 );
 router.put(
   "/api/tasks/:id",
+  validate(taskDto),
   authenticate,
   authorize(["Superuser", "Admin"]),
   updateTask

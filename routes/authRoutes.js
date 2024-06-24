@@ -5,13 +5,13 @@ const {
   logout,
   getProfile,
 } = require("../controllers/authController");
-
 const { authenticate, authorize } = require("../middleware/authMiddleware");
-
+const { validate } = require("../middleware/validateDtoMiddleware");
+const { registerDto, loginDto } = require("../dto/userDto");
 const router = express.Router();
 
-router.post("/register", register);
-router.post("/login", login);
+router.post("/register", validate(registerDto), register);
+router.post("/login", validate(loginDto), login);
 router.get(
   "/profile",
   authenticate,

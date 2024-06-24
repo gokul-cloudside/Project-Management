@@ -7,11 +7,14 @@ const {
   deleteDeployment,
 } = require("../controllers/deploymentController");
 const { authenticate, authorize } = require("../middleware/authMiddleware");
+const deploymentDto = require("../dto/deploymentDto");
+const { validate } = require("../middleware/validateDtoMiddleware");
 
 const router = express.Router();
 
 router.post(
   "/api/deployments",
+  validate(deploymentDto),
   authenticate,
   authorize(["Superuser", "Admin"]),
   createDeployment
@@ -30,6 +33,7 @@ router.get(
 );
 router.put(
   "/api/deployments/:id",
+  validate(deploymentDto),
   authenticate,
   authorize(["Superuser", "Admin"]),
   updateDeployment
