@@ -22,7 +22,6 @@ app.use(logRequests);
 app.use(logResponses);
 app.use(cors());
 
-//Routes
 app.use("/api/auth", authRoutes);
 app.use(userRoutes);
 app.use(projectRoutes);
@@ -31,10 +30,38 @@ app.use(documentRoutes);
 app.use(deploymentRoutes);
 app.use(customerRoutes);
 
+let server;
+function startServer() {
+  return new Promise((resolve, reject) => {
+    server = app.listen(process.env.PORT || 5000, (err) => {
+      if (err) reject(err);
+      console.log(`Server running on port ${server.address().port}`);
+      resolve();
+    });
+  });
+}
+
+function closeServer() {
+  return new Promise((resolve, reject) => {
+    if (server) {
+      server.close((err) => {
+        if (err) reject(err);
+        console.log("Server stopped");
+        resolve();
+      });
+    } else {
+      resolve();
+    }
+  });
+}
+
+module.exports = {
+  app,
+  startServer,
+  closeServer,
+};
+
 sequelize
   .sync()
   .then(() => console.log("Database connected"))
   .catch((err) => console.error("Database connection error", err));
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

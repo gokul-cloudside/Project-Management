@@ -15,7 +15,7 @@ router.post("/login", validate(loginDto), login);
 router.get(
   "/profile",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["Superuser", "admin"]),
   getProfile
 );
 router.delete("/logout", logout);

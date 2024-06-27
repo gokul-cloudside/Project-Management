@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db");
 const Project = require("./Project");
-const { version } = require("chai");
 
 const Deployment = sequelize.define(
   "Deployment",
