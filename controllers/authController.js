@@ -62,7 +62,7 @@ const getProfile = async (req, res) => {
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
 module.exports = { register, login, logout, getProfile };

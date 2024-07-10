@@ -45,15 +45,15 @@ const getProjectById = async (req, res) => {
   }
 };
 
-const updateProject = async (req, res) => {
+const  updateProject = async (req, res) => {
   const { id } = req.params;
-  const { name, description, status } = req.body;
+  const { name, description, status, loss, profit, budget, region, category  } = req.body;
   try {
     const project = await Project.findByPk(id);
     if (!project) {
       return res.status(404).json({ error: "Project not found" });
     }
-    await project.update({ name, description, status });
+    await project.update({ name, description, status, loss, profit, budget, region, category  });
     res.status(200).json(project);
   } catch (error) {
     res.status(400).json({ error: error.message });

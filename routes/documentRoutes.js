@@ -14,25 +14,25 @@ router.post(
   "/api/documents",
   validate(documentDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   uploadDocument
 );
 router.get(
   "/api/documents",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getAllDocuments
 );
 router.get(
   "/api/documents/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getDocumentById
 );
 router.delete(
   "/api/documents/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   deleteDocument
 );
 

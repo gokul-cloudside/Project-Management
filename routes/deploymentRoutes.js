@@ -16,32 +16,32 @@ router.post(
   "/api/deployments",
   validate(deploymentDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   createDeployment
 );
 router.get(
   "/api/deployments",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getAllDeployments
 );
 router.get(
   "/api/deployments/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getDeploymentById
 );
 router.put(
   "/api/deployments/:id",
   validate(deploymentDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   updateDeployment
 );
 router.delete(
   "/api/deployments/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   deleteDeployment
 );
 

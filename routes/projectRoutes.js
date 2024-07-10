@@ -30,32 +30,32 @@ router.post(
   "/api/projects",
   validate(projectDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   createProject
 );
 router.get(
   "/api/projects",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getAllProjects
 );
 router.get(
   "/api/projects/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getProjectById
 );
 router.put(
   "/api/projects/:id",
   validate(projectDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   updateProject
 );
 router.delete(
   "/api/projects/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   deleteProject
 );
 
@@ -63,21 +63,21 @@ router.post(
   "/api/projects/:id/participants",
   validate(participantDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   addParticipantToProject
 );
 
 router.delete(
   "/api/projects/:id/participants/:participantId",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   removeParticipantFromProject
 );
 
 router.get(
   "/api/projects/:id/participants",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getAllParticipantsOfProject
 );
 
@@ -85,26 +85,26 @@ router.put(
   "/api/projects/:id/participants/:participantId",
   validate(updateParticipantDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   updateParticipantRoleInProject
 );
 
 router.get(
   "/api/charts/projects/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getProjectChartData
 );
 router.get(
   "/api/charts/tasks",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getTaskAnalytics
 );
 router.get(
   "/api/charts",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getFilterData
 );
 

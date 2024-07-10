@@ -18,50 +18,50 @@ router.post(
   "/api/customers",
   validate(customerDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   createCustomer
 );
 router.get(
   "/api/customers",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getAllCustomers
 );
 router.get(
   "/api/customers/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getCustomerById
 );
 router.put(
   "/api/customers/:id",
   validate(customerDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   updateCustomer
 );
 router.delete(
   "/api/customers/:id",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   deleteCustomer
 );
 router.post(
   "/api/projects/:id/customers",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   associateCustomerWithProject
 );
 router.delete(
   "/api/projects/:id/customers/:customerId",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   removeCustomerFromProject
 );
 router.get(
   "/api/projects/:id/customers",
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["superUser", "admin"]),
   getAllCustomersOfProject
 );
 
