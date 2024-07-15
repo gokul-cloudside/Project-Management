@@ -37,7 +37,7 @@ router.put(
   "/api/customers/:id",
   validate(customerDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["Superuser", "Admin", "User"]),
   updateCustomer
 );
 router.delete(

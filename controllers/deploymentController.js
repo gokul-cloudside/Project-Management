@@ -61,7 +61,7 @@ const deleteDeployment = async (req, res) => {
       return res.status(404).json({ error: "Deployment not found" });
     }
     await deployment.destroy();
-    res.status(204).json({ message: "Deployment deleted successfully" });
+    res.status(200).json({ message: "Deployment deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

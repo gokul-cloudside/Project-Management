@@ -8,7 +8,7 @@ const {
 const { authenticate, authorize } = require("../middleware/authMiddleware");
 const router = express.Router();
 const { validate } = require("../middleware/validateDtoMiddleware");
-const {registerDto} = require("../dto/userDto");
+const { registerDto } = require("../dto/userDto");
 
 router.get(
   "/api/users",
@@ -26,7 +26,7 @@ router.put(
   "/api/users/:id",
   validate(registerDto),
   authenticate,
-  authorize(["Superuser", "Admin"]),
+  authorize(["Superuser", "Admin", "User"]),
   updateUser
 );
 router.delete(
