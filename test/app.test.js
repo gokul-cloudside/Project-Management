@@ -8,7 +8,7 @@ let documentId;
 let deploymentId;
 let customerId;
 let participantId;
-describe("User API Tests", () => {
+describe("Project Management API Tests", () => {
   beforeAll(async () => {
     await startServer();
   });
