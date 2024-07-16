@@ -1,5 +1,4 @@
 const request = require("supertest");
-
 const { app, startServer, closeServer } = require("../app");
 let authToken;
 let userId;
@@ -124,10 +123,6 @@ describe("Project Management API Tests", () => {
       .get(`/api/tasks/${taskId}`)
       .set("Authorization", `Bearer ${authToken}`);
 
-    if (response.status !== 200) {
-      console.log("Get Task by ID Error:", response.body);
-    }
-
     expect(response.status).toBe(200);
   });
 
@@ -141,11 +136,6 @@ describe("Project Management API Tests", () => {
         status: "completed",
         projectId: 12,
       });
-
-    if (response.status !== 200) {
-      console.log("Update Task Error:", response.body);
-    }
-
     expect(response.status).toBe(200);
   });
 
@@ -153,10 +143,6 @@ describe("Project Management API Tests", () => {
     const response = await request(app)
       .get("/api/tasks")
       .set("Authorization", `Bearer ${authToken}`);
-
-    if (response.status !== 200) {
-      console.log("Get All Tasks Error:", response.body);
-    }
 
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
@@ -167,10 +153,6 @@ describe("Project Management API Tests", () => {
     const response = await request(app)
       .delete(`/api/tasks/${taskId}`)
       .set("Authorization", `Bearer ${authToken}`);
-
-    if (response.status !== 200) {
-      console.log("Delete Task Error:", response.body);
-    }
 
     expect(response.status).toBe(200);
     expect(response.body.message).toBe("Task deleted successfully");
